@@ -21,7 +21,6 @@ export default function usePizza({ pizzas, values }) {
   // send data to servless function when they check out
   async function submitOrder(e) {
     e.preventDefault();
-    console.log(e);
     setLoading(true);
     setError(null);
     // setMessage('Go eat!');
@@ -32,7 +31,7 @@ export default function usePizza({ pizzas, values }) {
       total: formatMoney(calculateOrderTotal(order, pizzas)),
       name: values.name,
       email: values.email,
-      mapleSyrup: values.mapleSyrup,
+      mapleSyrup: values.mapleSyrup
     };
     // 4. Send this data the a serevrless function when they check out
     const res = await fetch(
@@ -40,9 +39,9 @@ export default function usePizza({ pizzas, values }) {
       {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(body)
       }
     );
     const text = JSON.parse(await res.text());
@@ -68,6 +67,6 @@ export default function usePizza({ pizzas, values }) {
     message,
     setLoading,
     setMessage,
-    submitOrder,
+    submitOrder
   };
 }

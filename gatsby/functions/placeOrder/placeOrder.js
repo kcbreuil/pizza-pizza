@@ -29,8 +29,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   auth: {
     user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS,
-  },
+    pass: process.env.MAIL_PASS
+  }
 });
 
 function wait(ms = 0) {
@@ -45,20 +45,19 @@ exports.handler = async (event, context) => {
   if (body.mapleSyrup) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ message: 'Boop beep bop zzzzstt good bye' }),
+      body: JSON.stringify({ message: 'Boop beep bop zzzzstt good bye' })
     };
   }
   // Validate the data coming in is correct
   const requiredFields = ['email', 'name', 'order'];
 
   for (const field of requiredFields) {
-    console.log(`Checking that ${field} is good`);
     if (!body[field]) {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          message: `Oops! You are missing the ${field} field`,
-        }),
+          message: `Oops! You are missing the ${field} field`
+        })
       };
     }
   }
@@ -68,8 +67,8 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: `Why would you order nothing?!`,
-      }),
+        message: `Why would you order nothing?!`
+      })
     };
   }
 
@@ -78,10 +77,10 @@ exports.handler = async (event, context) => {
     from: "Slick's Slices <slick@example.com>",
     to: `${body.name} <${body.email}>, orders@example.com`,
     subject: 'New order!',
-    html: generateOrderEmail({ order: body.order, total: body.total }),
+    html: generateOrderEmail({ order: body.order, total: body.total })
   });
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: 'Success' }),
+    body: JSON.stringify({ message: 'Success' })
   };
 };
