@@ -8,7 +8,11 @@ import SEO from '../components/SEO';
 const SlicemasterGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  --column: 450px;
+  grid-template-columns: repeat(auto-fill, minmax(var(--column), 1fr));
+  @media (max-width: 800px) {
+    --column: 250px;
+  }
 `;
 
 const SlicemasterStyles = styled.div`
