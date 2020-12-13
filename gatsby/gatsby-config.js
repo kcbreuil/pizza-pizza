@@ -19,7 +19,7 @@ export default {
         projectId: '05hux260',
         dataset: 'production',
         watchMode: true,
-        token: process.env.SANITY_TOKEN
+        token: process.env.SANITY_TOKEN,
       }
     }
   ]
